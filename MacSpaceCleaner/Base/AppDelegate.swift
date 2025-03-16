@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MacSpaceCleaner
 //
-//  Created by hyperlink on 3/16/25.
+//  Created by SanketK on 3/16/25.
 //
 
 import Cocoa

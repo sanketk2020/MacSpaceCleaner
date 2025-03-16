@@ -2,7 +2,7 @@
 //  AboutVC.swift
 //  MacSpaceCleaner
 //
-//  Created by hyperlink on 3/16/25.
+//  Created by SanketK on 3/16/25.
 //
 
 import Foundation
@@ -41,13 +41,12 @@ class AboutVC: NSViewController {
         /// Open app on any current window and move along with any window you go on
         self.view.window?.level = .floating
         self.view.window?.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-
         
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-
+        self.addTrackingArea()
     }
     
     func ApplyStyle(){
@@ -64,16 +63,26 @@ class AboutVC: NSViewController {
         self.lblSubTitle.alignment = .justified
         
         self.lblTitle.stringValue = "Mac Space Cleaner"
-        
+                
         self.lblSubTitle.stringValue = "A tool designed to efficiently free up unwanted occupied space by identifying and removing unnecessary files, cache, and other redundant data. It helps developers and general users optimize their system storage, particularly by cleaning Xcode cache, derived data, and simulator files, ensuring better performance and freeing up valuable disk space."
         
         self.lblMadeBy.stringValue = "Made By"
-        self.lblMadeByName.stringValue = "Sanket Khatri"
+        
+        let madeByText = "Sanket Khatri"
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: NSColor.systemBlue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineColor: NSColor.systemBlue,
+            .cursor: NSCursor.pointingHand
+        ]
+        let attributedString = NSAttributedString(string: madeByText, attributes: attributes)
+        self.lblMadeByName.attributedStringValue = attributedString
     }
     
     @IBAction func clickGestureOnMadeByName(_ sender: NSClickGestureRecognizer) {
         let url = URL(string: "https://github.com/sanketk2020")!
         if NSWorkspace.shared.open(url) {
+            self.view.window?.close()
             print("Browser was successfully opened")
         }
     }
@@ -87,6 +96,24 @@ class AboutVC: NSViewController {
         self.lblSubTitle.preferredMaxLayoutWidth = maxWidth
     }
     
+    func addTrackingArea() {
+        let trackingArea = NSTrackingArea(
+            rect: self.lblMadeByName.bounds,
+            options: [.activeInKeyWindow, .mouseEnteredAndExited, .cursorUpdate],
+            owner: self,
+            userInfo: nil
+        )
+        self.lblMadeByName.addTrackingArea(trackingArea)
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        NSCursor.pointingHand.set()
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        NSCursor.arrow.set()
+    }
+    
 }
 
 /*
@@ -95,7 +122,7 @@ class AboutVC: NSViewController {
  //  AppDelegate.swift
  //  Free Space
  //
- //  Created by hyperlink on 2/28/25.
+ //  Created by SanketK on 2/28/25.
  //
 
  import Cocoa

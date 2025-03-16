@@ -30,6 +30,13 @@
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dt6-aE-cGz">
                                                 <rect key="frame" x="-2" y="26" width="56" height="24"/>
+                                                <gestureRecognizers>
+                                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="xi4-IH-kDh">
+                                                        <connections>
+                                                            <action selector="clickGestureOnTitle:" target="bU7-R8-ocO" id="Mhz-QY-fxP"/>
+                                                        </connections>
+                                                    </clickGestureRecognizer>
+                                                </gestureRecognizers>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="5SD-PQ-3SR">
                                                     <font key="font" metaFont="systemBold" size="20"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -67,6 +74,13 @@
                                             </textField>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-bg-Hsg">
                                                 <rect key="frame" x="-2" y="0.0" width="44" height="19"/>
+                                                <gestureRecognizers>
+                                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Jrs-ev-pkb">
+                                                        <connections>
+                                                            <action selector="clickGestureOnMadeByName:" target="bU7-R8-ocO" id="66S-Gv-eMb"/>
+                                                        </connections>
+                                                    </clickGestureRecognizer>
+                                                </gestureRecognizers>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="X9O-3R-Vkb">
                                                     <font key="font" metaFont="systemBold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -113,7 +127,7 @@
                 </viewController>
                 <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-95"/>
+            <point key="canvasLocation" x="132" y="-95.5"/>
         </scene>
     </scenes>
     <resources>
