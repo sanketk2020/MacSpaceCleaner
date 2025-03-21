@@ -17,8 +17,8 @@ Mac Space Cleaner is a lightweight and efficient macOS application designed to h
 
 ## 📦 Installation
 1. **Download** the latest release from the [GitHub Releases](#) page.
-2. **Unzip** the package and move `MacSpaceCleaner.app` to the Applications folder.
-3. **Run** the app and grant necessary permissions if prompted.
+2. Directly open the application folder from the main directory and then move `MacSpaceCleaner.app` to the Applications folder.
+3. **Open & Run** the app and grant necessary permissions if prompted.
 
 ## 💻 Usage
 1. Launch **Mac Space Cleaner**.
