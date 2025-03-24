@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D198B1F2D9138AC003B3555 /* Step 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B182D9138AC003B3555 /* Step 2.png */; };
+		5D198B202D9138AC003B3555 /* Step 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1B2D9138AC003B3555 /* Step 5.png */; };
+		5D198B212D9138AC003B3555 /* Step 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1C2D9138AC003B3555 /* Step 6.png */; };
+		5D198B222D9138AC003B3555 /* Step 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1A2D9138AC003B3555 /* Step 4.png */; };
+		5D198B232D9138AC003B3555 /* Step 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1D2D9138AC003B3555 /* Step 7.png */; };
+		5D198B242D9138AC003B3555 /* Step 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B192D9138AC003B3555 /* Step 3.png */; };
+		5D198B252D9138AC003B3555 /* Step 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B172D9138AC003B3555 /* Step 1.png */; };
 		5DCC51EB2D8707960042A408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC51E42D8707960042A408 /* AppDelegate.swift */; };
 		5DCC51ED2D8707960042A408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51E52D8707960042A408 /* Assets.xcassets */; };
 		5DCC51EE2D8707960042A408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51E82D8707960042A408 /* Main.storyboard */; };
@@ -18,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D198B172D9138AC003B3555 /* Step 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 1.png"; sourceTree = "<group>"; };
+		5D198B182D9138AC003B3555 /* Step 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 2.png"; sourceTree = "<group>"; };
+		5D198B192D9138AC003B3555 /* Step 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 3.png"; sourceTree = "<group>"; };
+		5D198B1A2D9138AC003B3555 /* Step 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 4.png"; sourceTree = "<group>"; };
+		5D198B1B2D9138AC003B3555 /* Step 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 5.png"; sourceTree = "<group>"; };
+		5D198B1C2D9138AC003B3555 /* Step 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 6.png"; sourceTree = "<group>"; };
+		5D198B1D2D9138AC003B3555 /* Step 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 7.png"; sourceTree = "<group>"; };
 		5DCC51D22D87075A0042A408 /* MacSpaceCleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacSpaceCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCC51E42D8707960042A408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DCC51E52D8707960042A408 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,6 +55,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D198B1E2D9138AC003B3555 /* Steps */ = {
+			isa = PBXGroup;
+			children = (
+				5D198B172D9138AC003B3555 /* Step 1.png */,
+				5D198B182D9138AC003B3555 /* Step 2.png */,
+				5D198B192D9138AC003B3555 /* Step 3.png */,
+				5D198B1A2D9138AC003B3555 /* Step 4.png */,
+				5D198B1B2D9138AC003B3555 /* Step 5.png */,
+				5D198B1C2D9138AC003B3555 /* Step 6.png */,
+				5D198B1D2D9138AC003B3555 /* Step 7.png */,
+			);
+			path = Steps;
+			sourceTree = "<group>";
+		};
 		5DCC51C92D87075A0042A408 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +110,7 @@
 			children = (
 				5DCC51E52D8707960042A408 /* Assets.xcassets */,
 				5DCC51FA2D870A750042A408 /* Preview */,
+				5D198B1E2D9138AC003B3555 /* Steps */,
 				5DCC51F92D870A750042A408 /* Sounds */,
 			);
 			path = Resources;
@@ -179,6 +208,13 @@
 				5DCC51ED2D8707960042A408 /* Assets.xcassets in Resources */,
 				5DCC51EE2D8707960042A408 /* Main.storyboard in Resources */,
 				5DCC52122D87129E0042A408 /* Preview.jpeg in Resources */,
+				5D198B1F2D9138AC003B3555 /* Step 2.png in Resources */,
+				5D198B202D9138AC003B3555 /* Step 5.png in Resources */,
+				5D198B212D9138AC003B3555 /* Step 6.png in Resources */,
+				5D198B222D9138AC003B3555 /* Step 4.png in Resources */,
+				5D198B232D9138AC003B3555 /* Step 7.png in Resources */,
+				5D198B242D9138AC003B3555 /* Step 3.png in Resources */,
+				5D198B252D9138AC003B3555 /* Step 1.png in Resources */,
 				5DCC51F42D8707EB0042A408 /* About.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
