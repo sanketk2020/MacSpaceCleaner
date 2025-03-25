@@ -117,3 +117,7 @@ For questions or feature requests, reach out at [sanketk.j.2020@gmail.com](mailt
 ## 👤 Author
 [Sanket Khatri](https://github.com/sanketk2020) 
 
+## ☕ Support Me
+If you find this project helpful, consider supporting me:
+
+[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&slug=SanketK97&button_colour=5920df&font_colour=ffffff&font_family=Bree&outline_colour=ffffff&coffee_colour=FFDD00)](https://www.buymeacoffee.com/SanketK97)
