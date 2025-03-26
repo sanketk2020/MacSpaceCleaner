@@ -14,6 +14,7 @@
 		5D198B232D9138AC003B3555 /* Step 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1D2D9138AC003B3555 /* Step 7.png */; };
 		5D198B242D9138AC003B3555 /* Step 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B192D9138AC003B3555 /* Step 3.png */; };
 		5D198B252D9138AC003B3555 /* Step 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B172D9138AC003B3555 /* Step 1.png */; };
+		5D9930FD2D93B7D500C79520 /* bmc_qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9930FC2D93B7D500C79520 /* bmc_qr.png */; };
 		5DCC51EB2D8707960042A408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC51E42D8707960042A408 /* AppDelegate.swift */; };
 		5DCC51ED2D8707960042A408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51E52D8707960042A408 /* Assets.xcassets */; };
 		5DCC51EE2D8707960042A408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51E82D8707960042A408 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		5D198B1B2D9138AC003B3555 /* Step 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 5.png"; sourceTree = "<group>"; };
 		5D198B1C2D9138AC003B3555 /* Step 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 6.png"; sourceTree = "<group>"; };
 		5D198B1D2D9138AC003B3555 /* Step 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 7.png"; sourceTree = "<group>"; };
+		5D9930FC2D93B7D500C79520 /* bmc_qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bmc_qr.png; sourceTree = "<group>"; };
 		5DCC51D22D87075A0042A408 /* MacSpaceCleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacSpaceCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCC51E42D8707960042A408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DCC51E52D8707960042A408 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 				5D198B1D2D9138AC003B3555 /* Step 7.png */,
 			);
 			path = Steps;
+			sourceTree = "<group>";
+		};
+		5D9930FB2D93B7C100C79520 /* BMC */ = {
+			isa = PBXGroup;
+			children = (
+				5D9930FC2D93B7D500C79520 /* bmc_qr.png */,
+			);
+			path = BMC;
 			sourceTree = "<group>";
 		};
 		5DCC51C92D87075A0042A408 = {
@@ -112,6 +122,7 @@
 				5DCC51FA2D870A750042A408 /* Preview */,
 				5D198B1E2D9138AC003B3555 /* Steps */,
 				5DCC51F92D870A750042A408 /* Sounds */,
+				5D9930FB2D93B7C100C79520 /* BMC */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -216,6 +227,7 @@
 				5D198B242D9138AC003B3555 /* Step 3.png in Resources */,
 				5D198B252D9138AC003B3555 /* Step 1.png in Resources */,
 				5DCC51F42D8707EB0042A408 /* About.storyboard in Resources */,
+				5D9930FD2D93B7D500C79520 /* bmc_qr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
