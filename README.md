@@ -118,6 +118,14 @@ For questions or feature requests, reach out at [sanketk.j.2020@gmail.com](mailt
 [Sanket Khatri](https://github.com/sanketk2020) 
 
 ## ☕ Support Me
-If you find this project helpful, consider supporting me:
+If you find this project valuable, please consider supporting me by scanning or tapping the QR code below. Your support is greatly appreciated!
 
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&slug=SanketK97&button_colour=5920df&font_colour=ffffff&font_family=Bree&outline_colour=ffffff&coffee_colour=FFDD00)](https://www.buymeacoffee.com/SanketK97)
+<p align="left">
+  <a href="https://www.buymeacoffee.com/SanketK97" target="_blank">
+    <img src="MacSpaceCleaner/Resources/BMC/bmc_qr.png" 
+         alt="Buy Me a Coffee QR Code" 
+         width="125">
+  </a>
+</p>
+
+
