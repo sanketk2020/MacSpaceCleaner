@@ -103,12 +103,7 @@ private extension AboutVC {
     }
 
     func addTrackingArea() {
-        let trackingArea = NSTrackingArea(
-            rect: self.lblMadeByName.bounds,
-            options: [.activeInKeyWindow, .mouseEnteredAndExited, .cursorUpdate],
-            owner: self,
-            userInfo: nil
-        )
+        let trackingArea = NSTrackingArea(rect: self.lblMadeByName.bounds, options: [.activeInKeyWindow, .mouseEnteredAndExited, .cursorUpdate], owner: self)
         self.lblMadeByName.addTrackingArea(trackingArea)
     }
 }
