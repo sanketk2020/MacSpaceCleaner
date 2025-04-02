@@ -10,12 +10,12 @@ import Cocoa
 
 class AboutVC: NSViewController {
     
-    @IBOutlet weak var imgAppIcon       : NSImageView!
-    @IBOutlet weak var lblTitle         : NSTextField!
-    @IBOutlet weak var lblSubTitle      : NSTextField!
-    @IBOutlet weak var lblMadeBy        : NSTextField!
-    @IBOutlet weak var lblMadeByName    : NSTextField!
-    @IBOutlet weak var lblShareRate     : NSTextField!
+    @IBOutlet private var imgAppIcon   : NSImageView!
+    @IBOutlet private var lblTitle     : NSTextField!
+    @IBOutlet private var lblSubTitle  : NSTextField!
+    @IBOutlet private var lblMadeBy    : NSTextField!
+    @IBOutlet private var lblMadeByName: NSTextField!
+    @IBOutlet private var lblShareRate : NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
