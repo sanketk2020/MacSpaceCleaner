@@ -25,7 +25,8 @@ class AboutVC: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        self.ApplyStyle()
+        self.title = "About Mac Space Cleaner"
+        
         self.setLabel()
         
         // Calculate appropriate size based on content
@@ -48,10 +49,6 @@ class AboutVC: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.addTrackingArea()
-    }
-    
-    func ApplyStyle(){
-        self.title = "About Mac Space Cleaner"
     }
     
     func setLabel(){
