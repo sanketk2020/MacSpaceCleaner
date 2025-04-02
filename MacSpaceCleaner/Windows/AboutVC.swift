@@ -33,10 +33,9 @@ class AboutVC: NSViewController {
         self.view.layoutSubtreeIfNeeded()
         let fittingSize = self.view.fittingSize
         
-        if let window = self.view.window {
-            let newSize = NSSize(width: max(600, fittingSize.width), height: fittingSize.height)
-            window.setContentSize(newSize)
-        }
+        self.view.window?.setContentSize(
+            NSSize(width: max(600, fittingSize.width), height: fittingSize.height)
+        )
         
         self.view.layoutSubtreeIfNeeded()
 
