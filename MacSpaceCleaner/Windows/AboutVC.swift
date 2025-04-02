@@ -42,7 +42,6 @@ class AboutVC: NSViewController {
         /// Open app on any current window and move along with any window you go on
         self.view.window?.level = .floating
         self.view.window?.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        
     }
     
     override func viewDidAppear() {
@@ -50,6 +49,33 @@ class AboutVC: NSViewController {
         self.addTrackingArea()
     }
     
+    override func mouseEntered(with event: NSEvent) {
+        NSCursor.pointingHand.set()
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        NSCursor.arrow.set()
+    }
+}
+
+private extension AboutVC {
+
+    @IBAction func clickGestureOnMadeByName(_ sender: NSClickGestureRecognizer) {
+        let url = URL(string: "https://github.com/sanketk2020/MacSpaceCleaner")!
+        if NSWorkspace.shared.open(url) {
+            self.view.window?.close()
+            print("Browser was successfully opened")
+        }
+    }
+    
+    @objc func windowResized() {
+        let maxWidth = view.frame.width - 40
+        self.lblSubTitle.preferredMaxLayoutWidth = maxWidth
+    }
+}
+
+private extension AboutVC {
+
     func setLabel() {
         self.lblSubTitle.maximumNumberOfLines = 0
         self.lblSubTitle.isEditable = false
@@ -76,20 +102,7 @@ class AboutVC: NSViewController {
 
         self.lblShareRate.stringValue = "If you find it useful, feel free to star the repository and share your feedback!"
     }
-    
-    @IBAction func clickGestureOnMadeByName(_ sender: NSClickGestureRecognizer) {
-        let url = URL(string: "https://github.com/sanketk2020/MacSpaceCleaner")!
-        if NSWorkspace.shared.open(url) {
-            self.view.window?.close()
-            print("Browser was successfully opened")
-        }
-    }
-    
-    @objc func windowResized() {
-        let maxWidth = view.frame.width - 40
-        self.lblSubTitle.preferredMaxLayoutWidth = maxWidth
-    }
-    
+
     func addTrackingArea() {
         let trackingArea = NSTrackingArea(
             rect: self.lblMadeByName.bounds,
@@ -99,13 +112,4 @@ class AboutVC: NSViewController {
         )
         self.lblMadeByName.addTrackingArea(trackingArea)
     }
-    
-    override func mouseEntered(with event: NSEvent) {
-        NSCursor.pointingHand.set()
-    }
-    
-    override func mouseExited(with event: NSEvent) {
-        NSCursor.arrow.set()
-    }
-    
 }
