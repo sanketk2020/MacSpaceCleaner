@@ -50,7 +50,7 @@ class AboutVC: NSViewController {
         self.addTrackingArea()
     }
     
-    func setLabel(){
+    func setLabel() {
         self.lblSubTitle.maximumNumberOfLines = 0
         self.lblSubTitle.isEditable = false
         self.lblSubTitle.isSelectable = false
@@ -58,25 +58,23 @@ class AboutVC: NSViewController {
         self.lblSubTitle.cell?.wraps = true
         self.lblSubTitle.cell?.isScrollable = false
         self.lblSubTitle.alignment = .justified
-        
-        self.lblTitle.stringValue = "Mac Space Cleaner"
-                
         self.lblSubTitle.stringValue = "A tool designed to efficiently free up unwanted occupied space by identifying and removing unnecessary files, cache, and other redundant data. It helps developers and general users optimize their system storage, particularly by cleaning Xcode cache, derived data, and simulator files, ensuring better performance and freeing up valuable disk space."
 
+        self.lblTitle.stringValue = "Mac Space Cleaner"
+
         self.lblMadeBy.stringValue = "To learn more about this project & author of it"
-        
-        let madeByText = "click here"
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: NSColor.systemBlue,
-            .underlineStyle: NSUnderlineStyle.single.rawValue,
-            .underlineColor: NSColor.systemBlue,
-            .cursor: NSCursor.pointingHand
-        ]
-        let attributedString = NSAttributedString(string: madeByText, attributes: attributes)
-        self.lblMadeByName.attributedStringValue = attributedString
-        
+
+        self.lblMadeByName.attributedStringValue = NSAttributedString(
+            string: "click here",
+            attributes: [
+                .foregroundColor: NSColor.systemBlue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                .underlineColor: NSColor.systemBlue,
+                .cursor: NSCursor.pointingHand
+            ]
+        )
+
         self.lblShareRate.stringValue = "If you find it useful, feel free to star the repository and share your feedback!"
-        
     }
     
     @IBAction func clickGestureOnMadeByName(_ sender: NSClickGestureRecognizer) {
