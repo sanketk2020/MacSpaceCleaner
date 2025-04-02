@@ -62,10 +62,9 @@ private extension AboutVC {
 
     @IBAction func clickGestureOnMadeByName(_ sender: NSClickGestureRecognizer) {
         let url = URL(string: "https://github.com/sanketk2020/MacSpaceCleaner")!
-        if NSWorkspace.shared.open(url) {
-            self.view.window?.close()
-            print("Browser was successfully opened")
-        }
+        guard NSWorkspace.shared.open(url) else { return }
+        self.view.window?.close()
+        print("Browser was successfully opened")
     }
     
     @objc func windowResized() {
