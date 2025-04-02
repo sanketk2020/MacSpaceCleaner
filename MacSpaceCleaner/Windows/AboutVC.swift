@@ -89,10 +89,6 @@ class AboutVC: NSViewController {
     }
     
     @objc func windowResized() {
-        updateLabelFrame()
-    }
-    
-    func updateLabelFrame() {
         let maxWidth = view.frame.width - 40
         self.lblSubTitle.preferredMaxLayoutWidth = maxWidth
     }
