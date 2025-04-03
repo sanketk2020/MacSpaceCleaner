@@ -35,12 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        // Create a status bar item with variable length
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = self.statusItem.button {
-            // Set an icon for the status item (using SF Symbols or a custom image)
-//            button.image = NSImage(systemSymbolName: "trash", accessibilityDescription: "Clean DerivedData")
             button.image = NSImage(named: "menuIcon")
         }
         
@@ -514,9 +511,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    
-    
-    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
@@ -524,7 +518,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
 
 }
 
