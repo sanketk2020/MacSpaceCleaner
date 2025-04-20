@@ -65,13 +65,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem.menu = menu
         
     }
-
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     func createProgressWindow() {
-        self.progressWindow = NSWindow(contentRect: NSMakeRect(0, 0, 300, 100),
-                                  styleMask: [.titled, .closable],
-                                  backing: .buffered, defer: false)
+        self.progressWindow = NSWindow(contentRect: NSMakeRect(0, 0, 300, 100), styleMask: [.titled, .closable], backing: .buffered, defer: false)
         self.progressWindow.title = "Cleaning..."
         self.progressWindow.center()
         
@@ -82,17 +78,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.progressWindow.contentView?.addSubview(self.progressBar)
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
-    func openAppOnStartUp(){
+    func openAppOnStartUp() {
         if #available(macOS 13.0, *) {
             try? SMAppService.mainApp.register()
         } else {
             // Fallback on earlier versions
         }
     }
-    
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     @objc func cleanDerivedData() {
         // Construct the absolute path to the global DerivedData folder.
@@ -128,9 +120,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
-    /// Deletes the contents of the Xcode Caches folder.
     @objc func clearXcodeCaches() {
         // Xcode caches are typically stored in this folder:
         let xcodeCachesPath = "/Users/\(NSUserName())/Library/Developer/CoreSimulator/Caches"
@@ -172,9 +161,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
-    /// Deletes the contents of the global Xcode Archives folder.
     @objc func clearArchives() {
         let archivesPath = "/Users/\(NSUserName())/Library/Developer/Xcode/Archives"
         let fileManager = FileManager.default
@@ -214,8 +200,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
     }
-    
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     @objc func clearIOSDeviceSupport() {
         let iosDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/iOS DeviceSupport"
@@ -257,8 +241,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
     @objc func clearWatchOSDeviceSupport() {
         let watchOSDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/watchOS DeviceSupport"
         let fileManager = FileManager.default
@@ -297,8 +279,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     @objc func clearTVOSDeviceSupport() {
         let tvOSDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/tvOS DeviceSupport"
@@ -339,8 +319,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
     @objc func removeOldSimulators() {
         let task = Process()
         task.launchPath = "/usr/bin/xcrun"
@@ -361,8 +339,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.showNotification(title: "Error", message: "Failed to remove old simulators: \(output)", success: false)
         }
     }
-    
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     @objc func clearCaches() {
         let cachesPath = "/Users/\(NSUserName())/Library/Caches"
@@ -404,8 +380,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
     @objc func clearCocoaPodsCache() {
         let task = Process()
         task.launchPath = "/bin/bash"
@@ -428,8 +402,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
     @objc func emptyTrash() {
         let script = "tell application \"Finder\" to empty the trash"
         let task = Process()
@@ -445,9 +417,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.showNotification(title: "Error", message: "Failed to empty trash", success: false)
         }
     }
-    
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
     
     @objc func clearAll() {
         self.cleanDerivedData()
@@ -502,7 +471,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func playSound(success: Bool){
+    func playSound(success: Bool) {
         if success {
             DispatchQueue.main.async {
                 NSSound(named: "success.mp3")?.play()
@@ -514,18 +483,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    
-    
-    
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
-
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
