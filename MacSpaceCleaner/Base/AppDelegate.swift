@@ -17,9 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSApp.setActivationPolicy(.accessory)
-        self.openAppOnStartUp()
-        UNUserNotificationCenter.current().delegate = self
+        if #available(macOS 13.0, *) {
+            try? SMAppService.mainApp.register()
+        }
         
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
                 print("Notification permission error: \(error)")
@@ -59,14 +61,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusItem.menu = menu
         
-    }
-    
-    func openAppOnStartUp() {
-        if #available(macOS 13.0, *) {
-            try? SMAppService.mainApp.register()
-        } else {
-            // Fallback on earlier versions
-        }
     }
     
     @objc func cleanDerivedData() {
