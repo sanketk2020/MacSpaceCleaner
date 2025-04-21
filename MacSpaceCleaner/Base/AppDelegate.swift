@@ -35,32 +35,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create a status bar item with variable length
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
-        if let button = self.statusItem.button {
-            // Set an icon for the status item (using SF Symbols or a custom image)
-//            button.image = NSImage(systemSymbolName: "trash", accessibilityDescription: "Clean DerivedData")
-            button.image = NSImage(named: "menuIcon")
-        }
+        // Set an icon for the status item (using SF Symbols or a custom image)
+//        self.statusItem.button?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: "Clean DerivedData")
+        self.statusItem.button?.image = NSImage(named: "menuIcon")
         
-        // Create the menu for the status item
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Clean Derived Data", action: #selector(cleanDerivedData), keyEquivalent: "C"))
-        menu.addItem(NSMenuItem(title: "Clear Xcode Caches", action: #selector(clearXcodeCaches), keyEquivalent: "X"))
-        menu.addItem(NSMenuItem(title: "Clear Archives", action: #selector(clearArchives), keyEquivalent: "A"))
-        menu.addItem(NSMenuItem(title: "Clear iOS Device Support", action: #selector(clearIOSDeviceSupport), keyEquivalent: "I"))
-        menu.addItem(NSMenuItem(title: "Clear watchOS Device Support", action: #selector(clearWatchOSDeviceSupport), keyEquivalent: "W"))
-        menu.addItem(NSMenuItem(title: "Clear tvOS Device Support", action: #selector(clearTVOSDeviceSupport), keyEquivalent: "T"))
-        menu.addItem(NSMenuItem(title: "Remove Old Simulators", action: #selector(removeOldSimulators), keyEquivalent: "R"))
-        menu.addItem(NSMenuItem(title: "Clear Caches", action: #selector(clearCaches), keyEquivalent: "S"))
-        menu.addItem(NSMenuItem(title: "Clear Cocoa Pods Cache", action: #selector(clearCocoaPodsCache), keyEquivalent: "P"))
-        menu.addItem(NSMenuItem(title: "Empty Trash", action: #selector(emptyTrash), keyEquivalent: "D"))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Clear All", action: #selector(clearAll), keyEquivalent: "E"))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "About MSC", action: #selector(about), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "Q"))
-        
+        [
+            NSMenuItem(title: "Clean Derived Data",           action: #selector(cleanDerivedData),          keyEquivalent: "C"),
+            NSMenuItem(title: "Clear Xcode Caches",           action: #selector(clearXcodeCaches),          keyEquivalent: "X"),
+            NSMenuItem(title: "Clear Archives",               action: #selector(clearArchives),             keyEquivalent: "A"),
+            NSMenuItem(title: "Clear iOS Device Support",     action: #selector(clearIOSDeviceSupport),     keyEquivalent: "I"),
+            NSMenuItem(title: "Clear watchOS Device Support", action: #selector(clearWatchOSDeviceSupport), keyEquivalent: "W"),
+            NSMenuItem(title: "Clear tvOS Device Support",    action: #selector(clearTVOSDeviceSupport),    keyEquivalent: "T"),
+            NSMenuItem(title: "Remove Old Simulators",        action: #selector(removeOldSimulators),       keyEquivalent: "R"),
+            NSMenuItem(title: "Clear Caches",                 action: #selector(clearCaches),               keyEquivalent: "S"),
+            NSMenuItem(title: "Clear Cocoa Pods Cache",       action: #selector(clearCocoaPodsCache),       keyEquivalent: "P"),
+            NSMenuItem(title: "Empty Trash",                  action: #selector(emptyTrash),                keyEquivalent: "D"),
+            NSMenuItem.separator(),
+            NSMenuItem(title: "Clear All",                    action: #selector(clearAll),                  keyEquivalent: "E"),
+            NSMenuItem.separator(),
+            NSMenuItem(title: "About MSC",                    action: #selector(about),                     keyEquivalent: ""),
+            NSMenuItem(title: "Quit",                         action: #selector(quitApp),                   keyEquivalent: "Q")
+        ].forEach({ menu.addItem($0) })
         self.statusItem.menu = menu
-        
     }
     
     @objc func cleanDerivedData() {
