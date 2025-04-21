@@ -89,234 +89,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func cleanDerivedData() {
         // Construct the absolute path to the global DerivedData folder.
         // NSUserName() returns the current user's short name.
-        let derivedDataPath = "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: derivedDataPath) else {
-            self.showNotification(title: "Info", message: "DerivedData folder not found!", success: false)
-            return
-        }
-        
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (derivedDataPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    self.showNotification(title: "Error", message: "Failed to clean DerivedData: \(error.localizedDescription)", success: false)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                self.showNotification(title: "Clean DerivedData", message: "DerivedData cleaned successfully!", success: true)
-            }
-        }
+        let path = "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData"
+        let folderName = "DerivedData"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearXcodeCaches() {
         // Xcode caches are typically stored in this folder:
-        let xcodeCachesPath = "/Users/\(NSUserName())/Library/Developer/CoreSimulator/Caches"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: xcodeCachesPath) else {
-            self.showNotification(title: "Info", message: "Xcode Caches folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (xcodeCachesPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async { [self] in
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear Xcode Caches", message: "Xcode Caches cleared successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear Xcode Caches", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: true)
-                }
-            }
-        }
-        
+        let path = "/Users/\(NSUserName())/Library/Developer/CoreSimulator/Caches"
+        let folderName = "Xcode Caches"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearArchives() {
-        let archivesPath = "/Users/\(NSUserName())/Library/Developer/Xcode/Archives"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: archivesPath) else {
-            self.showNotification(title: "Info", message: "Xcode Archives folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-        
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (archivesPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear Archives", message: "Xcode Archives cleared successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear Archives", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: true)
-                }
-            }
-        }
-        
+        let path = "/Users/\(NSUserName())/Library/Developer/Xcode/Archives"
+        let folderName = "Xcode Archives"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearIOSDeviceSupport() {
-        let iosDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/iOS DeviceSupport"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: iosDeviceSupportPath) else {
-            self.showNotification(title: "Info", message: "iOS Device Support folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (iosDeviceSupportPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear iOS Device Support", message: "iOS Device Support cleaned successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear iOS Device Support", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: false)
-                }
-            }
-        }
-        
+        let path = "/Users/\(NSUserName())/Library/Developer/Xcode/iOS DeviceSupport"
+        let folderName = "iOS Device Support"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearWatchOSDeviceSupport() {
-        let watchOSDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/watchOS DeviceSupport"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: watchOSDeviceSupportPath) else {
-            self.showNotification(title: "Info", message: "watchOS Device Support folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (watchOSDeviceSupportPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear watchOS Device Support", message: "watchOS Device Support cleaned successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear watchOS Device Support", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: false)
-                }
-            }
-        }
+        let path = "/Users/\(NSUserName())/Library/Developer/Xcode/watchOS DeviceSupport"
+        let folderName = "watchOS Device Support"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearTVOSDeviceSupport() {
-        let tvOSDeviceSupportPath = "/Users/\(NSUserName())/Library/Developer/Xcode/tvOS DeviceSupport"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: tvOSDeviceSupportPath) else {
-            self.showNotification(title: "Info", message: "tvOS Device Support folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-        
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (tvOSDeviceSupportPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear tvOS Device Support", message: "tvOS Device Support cleaned successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear tvOS Device Support", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: false)
-                }
-            }
-        }
+        let path = "/Users/\(NSUserName())/Library/Developer/Xcode/tvOS DeviceSupport"
+        let folderName = "tvOS Device Support"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func removeOldSimulators() {
@@ -341,43 +147,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func clearCaches() {
-        let cachesPath = "/Users/\(NSUserName())/Library/Caches"
-        let fileManager = FileManager.default
-        
-        guard let items = try? fileManager.contentsOfDirectory(atPath: cachesPath) else {
-            self.showNotification(title: "Info", message: "Caches folder not found!", success: false)
-            return
-        }
-        
-        var failedItems = [String]()
-
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (index, item) in items.enumerated() {
-                let fullPath = (cachesPath as NSString).appendingPathComponent(item)
-                do {
-                    try fileManager.removeItem(atPath: fullPath)
-                    DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
-                    }
-                } catch {
-                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
-                    failedItems.append(item)
-                }
-            }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
-                if failedItems.isEmpty {
-                    self.showNotification(title: "Clear Caches", message: "Caches cleared successfully!", success: true)
-                } else {
-                    self.showNotification(title: "Clear Caches", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: true)
-                }
-            }
-        }
-        
+        let path = "/Users/\(NSUserName())/Library/Caches"
+        let folderName = "Caches"
+        self.cleanFolder(at: path, folderName: folderName)
     }
     
     @objc func clearCocoaPodsCache() {
@@ -491,5 +263,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound])
+    }
+}
+
+private extension AppDelegate {
+
+    func cleanFolder(at path: String, folderName: String) {
+        let fileManager = FileManager.default
+        
+        guard let items = try? fileManager.contentsOfDirectory(atPath: path) else {
+            self.showNotification(title: "Info", message: "\(folderName) folder not found!", success: false)
+            return
+        }
+        
+        var failedItems = [String]()
+        
+        self.progressBar.doubleValue = 0
+        self.progressBar.maxValue = Double(items.count)
+        self.progressWindow.makeKeyAndOrderFront(nil)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            for (index, item) in items.enumerated() {
+                let fullPath = (path as NSString).appendingPathComponent(item)
+                do {
+                    try fileManager.removeItem(atPath: fullPath)
+                    DispatchQueue.main.async {
+                        self.progressBar.doubleValue = Double(index + 1)
+                    }
+                } catch {
+                    print("Failed to remove \(fullPath): \(error.localizedDescription)")
+                    failedItems.append(item)
+                }
+            }
+            DispatchQueue.main.async {
+                self.progressWindow.orderOut(nil)
+                if failedItems.isEmpty {
+                    self.showNotification(title: "Clear \(folderName)", message: "\(folderName) cleaned successfully!", success: true)
+                } else {
+                    self.showNotification(title: "Clear \(folderName)", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: false)
+                }
+            }
+        }
     }
 }
