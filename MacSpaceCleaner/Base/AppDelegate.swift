@@ -14,13 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusItem              : NSStatusItem!
     var aboutWindowController   : NSWindowController?
-    
-    var progressWindow          : NSWindow!
-    var progressBar             : NSProgressIndicator!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
-        self.createProgressWindow()
         NSApp.setActivationPolicy(.accessory)
         self.openAppOnStartUp()
         UNUserNotificationCenter.current().delegate = self
@@ -64,18 +59,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusItem.menu = menu
         
-    }
-    
-    func createProgressWindow() {
-        self.progressWindow = NSWindow(contentRect: NSMakeRect(0, 0, 300, 100), styleMask: [.titled, .closable], backing: .buffered, defer: false)
-        self.progressWindow.title = "Cleaning..."
-        self.progressWindow.center()
-        
-        self.progressBar = NSProgressIndicator(frame: NSMakeRect(20, 40, 260, 20))
-        self.progressBar.isIndeterminate = false
-        self.progressBar.minValue = 0
-        self.progressBar.maxValue = 100
-        self.progressWindow.contentView?.addSubview(self.progressBar)
     }
     
     func openAppOnStartUp() {
@@ -246,25 +229,24 @@ private extension AppDelegate {
         
         var failedItems = [String]()
         
-        self.progressBar.doubleValue = 0
-        self.progressBar.maxValue = Double(items.count)
-        self.progressWindow.makeKeyAndOrderFront(nil)
+        let progressWindow = ProgressWindow(maxValue: Double(items.count))
+        progressWindow.makeKeyAndOrderFront(nil)
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async { [progressWindow] in
             for (index, item) in items.enumerated() {
                 let fullPath = (path as NSString).appendingPathComponent(item)
                 do {
                     try fileManager.removeItem(atPath: fullPath)
                     DispatchQueue.main.async {
-                        self.progressBar.doubleValue = Double(index + 1)
+                        progressWindow.progress = Double(index + 1)
                     }
                 } catch {
                     print("Failed to remove \(fullPath): \(error.localizedDescription)")
                     failedItems.append(item)
                 }
             }
-            DispatchQueue.main.async {
-                self.progressWindow.orderOut(nil)
+            DispatchQueue.main.async { [progressWindow] in
+                progressWindow.orderOut(nil)
                 if failedItems.isEmpty {
                     self.showNotification(title: "Clear \(folderName)", message: "\(folderName) cleaned successfully!", success: true)
                 } else {
