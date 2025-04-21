@@ -12,8 +12,17 @@ import ServiceManagement
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var statusItem              : NSStatusItem!
-    var aboutWindowController   : NSWindowController?
+    private var statusItem: NSStatusItem!
+
+    private lazy var aboutWindowController: NSWindowController? = {
+        let storyboard = NSStoryboard(name: "About", bundle: nil)
+        guard let aboutVC = storyboard.instantiateController(withIdentifier: "AboutVC") as? AboutVC else { return nil }
+        let window = NSWindow(contentViewController: aboutVC)
+        window.styleMask = [.titled, .closable, .miniaturizable]
+        window.setContentSize(aboutVC.view.fittingSize)
+        window.makeKeyAndOrderFront(nil)
+        return NSWindowController(window: window)
+    }()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -148,18 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func about() {
-        
-        if self.aboutWindowController == nil {
-            let storyboard = NSStoryboard(name: "About", bundle: nil)
-            guard let aboutVC = storyboard.instantiateController(withIdentifier: "AboutVC") as? AboutVC else { return }
-            let window = NSWindow(contentViewController: aboutVC)
-            window.styleMask = [.titled, .closable, .miniaturizable]
-            window.setContentSize(aboutVC.view.fittingSize)
-            window.makeKeyAndOrderFront(nil)
-            self.aboutWindowController = NSWindowController(window: window)
-        }
         self.aboutWindowController?.showWindow(self)
-        
     }
     
     @objc func quitApp() {
