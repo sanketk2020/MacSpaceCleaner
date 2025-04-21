@@ -125,6 +125,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.cleanFolder(at: path, folderName: folderName)
     }
     
+    @objc func clearCaches() {
+        let path = "/Users/\(NSUserName())/Library/Caches"
+        let folderName = "Caches"
+        self.cleanFolder(at: path, folderName: folderName)
+    }
+    
     @objc func removeOldSimulators() {
         let task = Process()
         task.launchPath = "/usr/bin/xcrun"
@@ -145,13 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.showNotification(title: "Error", message: "Failed to remove old simulators: \(output)", success: false)
         }
     }
-    
-    @objc func clearCaches() {
-        let path = "/Users/\(NSUserName())/Library/Caches"
-        let folderName = "Caches"
-        self.cleanFolder(at: path, folderName: folderName)
-    }
-    
+
     @objc func clearCocoaPodsCache() {
         let task = Process()
         task.launchPath = "/bin/bash"
