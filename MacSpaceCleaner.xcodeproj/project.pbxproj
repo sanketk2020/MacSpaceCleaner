@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D26DE2A2DB6B4380063A195 /* ProgressWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26DE292DB6B4300063A195 /* ProgressWindow.swift */; };
+		2D26DE2E2DB6E7B20063A195 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26DE2D2DB6E7AF0063A195 /* AppViewModel.swift */; };
+		2D26DE3A2DB707130063A195 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D26DE382DB707130063A195 /* fail.mp3 */; };
+		2D26DE3B2DB707130063A195 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D26DE392DB707130063A195 /* success.mp3 */; };
 		5D198B1F2D9138AC003B3555 /* Step 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B182D9138AC003B3555 /* Step 2.png */; };
 		5D198B202D9138AC003B3555 /* Step 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1B2D9138AC003B3555 /* Step 5.png */; };
 		5D198B212D9138AC003B3555 /* Step 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D198B1C2D9138AC003B3555 /* Step 6.png */; };
@@ -21,13 +24,14 @@
 		5DCC51EE2D8707960042A408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51E82D8707960042A408 /* Main.storyboard */; };
 		5DCC51F42D8707EB0042A408 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51F32D8707EB0042A408 /* About.storyboard */; };
 		5DCC51F62D8707FD0042A408 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC51F52D8707FD0042A408 /* AboutVC.swift */; };
-		5DCC51FD2D870A890042A408 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51FC2D870A890042A408 /* success.mp3 */; };
-		5DCC51FE2D870A890042A408 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51FB2D870A890042A408 /* fail.mp3 */; };
 		5DCC52122D87129E0042A408 /* Preview.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC52112D87129E0042A408 /* Preview.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2D26DE292DB6B4300063A195 /* ProgressWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWindow.swift; sourceTree = "<group>"; };
+		2D26DE2D2DB6E7AF0063A195 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		2D26DE382DB707130063A195 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
+		2D26DE392DB707130063A195 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		5D198B172D9138AC003B3555 /* Step 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 1.png"; sourceTree = "<group>"; };
 		5D198B182D9138AC003B3555 /* Step 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 2.png"; sourceTree = "<group>"; };
 		5D198B192D9138AC003B3555 /* Step 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Step 3.png"; sourceTree = "<group>"; };
@@ -43,8 +47,6 @@
 		5DCC51E72D8707960042A408 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DCC51F32D8707EB0042A408 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		5DCC51F52D8707FD0042A408 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
-		5DCC51FB2D870A890042A408 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
-		5DCC51FC2D870A890042A408 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		5DCC52112D87129E0042A408 /* Preview.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Preview.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D26DE332DB703F70063A195 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				2D26DE382DB707130063A195 /* fail.mp3 */,
+				2D26DE392DB707130063A195 /* success.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		5D198B1E2D9138AC003B3555 /* Steps */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +123,7 @@
 		5DCC51EF2D87079F0042A408 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				2D26DE2D2DB6E7AF0063A195 /* AppViewModel.swift */,
 				2D26DE292DB6B4300063A195 /* ProgressWindow.swift */,
 				5DCC51E42D8707960042A408 /* AppDelegate.swift */,
 			);
@@ -124,7 +136,7 @@
 				5DCC51E52D8707960042A408 /* Assets.xcassets */,
 				5DCC51FA2D870A750042A408 /* Preview */,
 				5D198B1E2D9138AC003B3555 /* Steps */,
-				5DCC51F92D870A750042A408 /* Sounds */,
+				2D26DE332DB703F70063A195 /* Sounds */,
 				5D9930FB2D93B7C100C79520 /* BMC */,
 			);
 			path = Resources;
@@ -137,15 +149,6 @@
 				5DCC51F52D8707FD0042A408 /* AboutVC.swift */,
 			);
 			path = Windows;
-			sourceTree = "<group>";
-		};
-		5DCC51F92D870A750042A408 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				5DCC51FB2D870A890042A408 /* fail.mp3 */,
-				5DCC51FC2D870A890042A408 /* success.mp3 */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		5DCC51FA2D870A750042A408 /* Preview */ = {
@@ -217,8 +220,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCC51FD2D870A890042A408 /* success.mp3 in Resources */,
-				5DCC51FE2D870A890042A408 /* fail.mp3 in Resources */,
 				5DCC51ED2D8707960042A408 /* Assets.xcassets in Resources */,
 				5DCC51EE2D8707960042A408 /* Main.storyboard in Resources */,
 				5DCC52122D87129E0042A408 /* Preview.jpeg in Resources */,
@@ -229,6 +230,8 @@
 				5D198B232D9138AC003B3555 /* Step 7.png in Resources */,
 				5D198B242D9138AC003B3555 /* Step 3.png in Resources */,
 				5D198B252D9138AC003B3555 /* Step 1.png in Resources */,
+				2D26DE3A2DB707130063A195 /* fail.mp3 in Resources */,
+				2D26DE3B2DB707130063A195 /* success.mp3 in Resources */,
 				5DCC51F42D8707EB0042A408 /* About.storyboard in Resources */,
 				5D9930FD2D93B7D500C79520 /* bmc_qr.png in Resources */,
 			);
@@ -243,6 +246,7 @@
 			files = (
 				5DCC51EB2D8707960042A408 /* AppDelegate.swift in Sources */,
 				2D26DE2A2DB6B4380063A195 /* ProgressWindow.swift in Sources */,
+				2D26DE2E2DB6E7B20063A195 /* AppViewModel.swift in Sources */,
 				5DCC51F62D8707FD0042A408 /* AboutVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
