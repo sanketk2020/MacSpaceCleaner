@@ -132,62 +132,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func removeOldSimulators() {
-        let task = Process()
-        task.launchPath = "/usr/bin/xcrun"
-        task.arguments = ["simctl", "delete", "unavailable"]
-        
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.standardError = pipe
-        
-        task.launch()
-        task.waitUntilExit()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8) ?? ""
-        if task.terminationStatus == 0 {
-            self.showNotification(title: "Remove Old Simulators", message: "Old simulators removed successfully!", success: true)
-        } else {
-            self.showNotification(title: "Error", message: "Failed to remove old simulators: \(output)", success: false)
-        }
+        let launchPath = "/usr/bin/xcrun"
+        let arguments = ["simctl", "delete", "unavailable"]
+        let successTitle = "Remove Old Simulators"
+        let successMessage = "Old simulators removed successfully!"
+        let failureMessage = "Failed to remove old simulators"
+        self.runShellCommand(launchPath: launchPath, arguments: arguments, successTitle: successTitle, successMessage: successMessage, failureMessage: failureMessage)
     }
 
     @objc func clearCocoaPodsCache() {
-        let task = Process()
-        task.launchPath = "/bin/bash"
-        task.arguments = ["-c", "if command -v pod &> /dev/null; then pod cache clean --all; else echo 'CocoaPods not installed'; fi"]
-        
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.standardError = pipe
-        
-        task.launch()
-        task.waitUntilExit()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8) ?? ""
-        
-        if task.terminationStatus == 0 {
-            self.showNotification(title: "Clear CocoaPods Cache", message: "CocoaPods cache cleared successfully!", success: true)
-        } else {
-            self.showNotification(title: "Error", message: "Failed to clear CocoaPods cache: \(output)", success: false)
-        }
+        let launchPath = "/bin/bash"
+        let arguments = ["-c", "if command -v pod &> /dev/null; then pod cache clean --all; else echo 'CocoaPods not installed'; fi"]
+        let successTitle = "Clear CocoaPods Cache"
+        let successMessage = "CocoaPods cache cleared successfully!"
+        let failureMessage = "Failed to clear CocoaPods cache"
+        self.runShellCommand(launchPath: launchPath, arguments: arguments, successTitle: successTitle, successMessage: successMessage, failureMessage: failureMessage)
     }
     
     @objc func emptyTrash() {
-        let script = "tell application \"Finder\" to empty the trash"
-        let task = Process()
-        task.launchPath = "/usr/bin/osascript"
-        task.arguments = ["-e", script]
-
-        task.launch()
-        task.waitUntilExit()
-
-        if task.terminationStatus == 0 {
-            self.showNotification(title: "Empty Trash", message: "Trash emptied successfully!", success: true)
-        } else {
-            self.showNotification(title: "Error", message: "Failed to empty trash", success: false)
-        }
+        let launchPath = "/usr/bin/osascript"
+        let arguments = ["-e", "tell application \"Finder\" to empty the trash"]
+        let successTitle = "Empty Trash"
+        let successMessage = "Trash emptied successfully!"
+        let failureMessage = "Failed to empty trash"
+        self.runShellCommand(launchPath: launchPath, arguments: arguments, successTitle: successTitle, successMessage: successMessage, failureMessage: failureMessage)
     }
     
     @objc func clearAll() {
@@ -303,6 +271,28 @@ private extension AppDelegate {
                     self.showNotification(title: "Clear \(folderName)", message: "Some items could not be removed: \(failedItems.joined(separator: ", "))", success: false)
                 }
             }
+        }
+    }
+
+    func runShellCommand(launchPath: String, arguments: [String], successTitle: String, successMessage: String, failureMessage: String) {
+        let task = Process()
+        task.launchPath = launchPath
+        task.arguments = arguments
+        
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.standardError = pipe
+        
+        task.launch()
+        task.waitUntilExit()
+        
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: data, encoding: .utf8) ?? ""
+        
+        if task.terminationStatus == 0 {
+            self.showNotification(title: successTitle, message: successMessage, success: true)
+        } else {
+            self.showNotification(title: "Error", message: "\(failureMessage): \(output)", success: false)
         }
     }
 }
