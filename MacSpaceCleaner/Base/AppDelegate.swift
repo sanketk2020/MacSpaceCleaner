@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var progressWindow          : NSWindow!
     var progressBar             : NSProgressIndicator!
+    var storageInfoItem         : NSMenuItem!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -46,6 +47,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create the menu for the status item
         let menu = NSMenu()
+        
+        // Add storage info menu item at the top
+        self.storageInfoItem = NSMenuItem(title: "Calculating available storage...", action: nil, keyEquivalent: "")
+        self.storageInfoItem.isEnabled = false
+        menu.addItem(self.storageInfoItem)
+        menu.addItem(NSMenuItem.separator())
+        
         menu.addItem(NSMenuItem(title: "Clean Derived Data", action: #selector(cleanDerivedData), keyEquivalent: "C"))
         menu.addItem(NSMenuItem(title: "Clear Xcode Caches", action: #selector(clearXcodeCaches), keyEquivalent: "X"))
         menu.addItem(NSMenuItem(title: "Clear Archives", action: #selector(clearArchives), keyEquivalent: "A"))
@@ -64,6 +72,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusItem.menu = menu
         
+        // Update storage info immediately and then periodically
+        self.updateStorageInfo()
+        Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateStorageInfo), userInfo: nil, repeats: true)
     }
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -525,6 +536,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
+    @objc func updateStorageInfo() {
+        DispatchQueue.global(qos: .background).async {
+            let fileURL = URL(fileURLWithPath: "/")
+            do {
+                let values = try fileURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+                if let capacity = values.volumeAvailableCapacityForImportantUsage {
+                    let formatter = ByteCountFormatter()
+                    formatter.allowedUnits = [.useGB]
+                    formatter.countStyle = .file
+                    let availableString = formatter.string(fromByteCount: Int64(capacity))
+                    
+                    DispatchQueue.main.async {
+                        self.storageInfoItem.title = "Available Storage: \(availableString)"
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.storageInfoItem.title = "Available Storage: Unknown"
+                }
+            }
+        }
+    }
 
 }
 
