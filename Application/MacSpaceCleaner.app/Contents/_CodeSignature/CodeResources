@@ -6,15 +6,15 @@
 	<dict>
 		<key>Resources/About.storyboardc/AboutVC.nib</key>
 		<data>
-		r9aF8tgkIFMuPd5FaLqGOZTlbrU=
+		Hb5VagLu8ycpI96RuLXPNuvKLf0=
 		</data>
 		<key>Resources/About.storyboardc/Info.plist</key>
 		<data>
-		FVc93r01wnMCJjIzbodzEZ8a5f4=
+		NQ2HfMeuvkDf+xKkIrLHViBk0Qc=
 		</data>
 		<key>Resources/About.storyboardc/bU7-R8-ocO-view-tOy-S4-hL0.nib</key>
 		<data>
-		oVGkXVW4h9lIwsAjcmewn+GRdRk=
+		Bs60mYxvJwhB4yNaPKHZEkaveaE=
 		</data>
 		<key>Resources/AppIcon.icns</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		09a8rgyMOZYeXZA0p3862ar4HJw=
+		P9v7d1WibIPImy2BCmA7NM21GDA=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
@@ -30,11 +30,43 @@
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		duxUOL67DytvnYS7gxmJGT1TKTo=
+		FsRrTJiO5RPlB0uCA3KHLS3Xhy0=
 		</data>
 		<key>Resources/Preview.jpeg</key>
 		<data>
 		FkVPhhKR8G8mWZrBcONAtb2N43A=
+		</data>
+		<key>Resources/Step 1.png</key>
+		<data>
+		uloteKBHfaDKVaqkNlOQ1ZIFRDA=
+		</data>
+		<key>Resources/Step 2.png</key>
+		<data>
+		lReqIe0oTZaptIdpJOsRHJbMbGs=
+		</data>
+		<key>Resources/Step 3.png</key>
+		<data>
+		O9mVJQJFCMkHIbChOvxwLP3g9pw=
+		</data>
+		<key>Resources/Step 4.png</key>
+		<data>
+		XBx8YmgzovkrLDR5WVe3xKyMWcE=
+		</data>
+		<key>Resources/Step 5.png</key>
+		<data>
+		3HXpbRxBsD/qoQLV++ImYMVHN2E=
+		</data>
+		<key>Resources/Step 6.png</key>
+		<data>
+		4cX7kG/TSFU6ddtIsIzfulL+xMk=
+		</data>
+		<key>Resources/Step 7.png</key>
+		<data>
+		gNk4LTeeUBorauSCz7mhuJ9sMRc=
+		</data>
+		<key>Resources/bmc_qr.png</key>
+		<data>
+		RfPeK/mPwNX1uRy3AQq5kB5wmJY=
 		</data>
 		<key>Resources/fail.mp3</key>
 		<data>
@@ -51,21 +83,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YUHhlB4KLOT6jHITWJ3kKLb3o8z7SANDGf8G17TY4V0=
+			G8CmnFf0EkYwMG8STBtX2t5g9IR+EF3FnlsDAy0HG5w=
 			</data>
 		</dict>
 		<key>Resources/About.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qH6xHMocj/6jbsD9VWS6YJMNFyxu9fvoaYwEZyuLyus=
+			L19z23ht0zgjpxaXDimvz3gAE1kzK4HOc28xFVg6C2k=
 			</data>
 		</dict>
 		<key>Resources/About.storyboardc/bU7-R8-ocO-view-tOy-S4-hL0.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SuDuuqMxDye764xl2rjjgEBhwfdsKNWfAx4lXt3sPO0=
+			juvDn/MkNpPVtRMS4BfoksUhN5r3HRboKbd4UQ5vIFg=
 			</data>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
@@ -79,7 +111,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G1HcNu4TiBr+lN2ejEDfYlzRu4/XGeFAaDnaJBzbseI=
+			8TLOfLXKIM6XdP8LHwRTm/Y7UxCyzPmN3T2pgbhtrcQ=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
@@ -93,7 +125,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6Exi1gd7YL38lWglW+p8yAFqK5aAMuQSPQ6J5UvSD4g=
+			DWz9rwYBwIq+3RW/11Cdp/+A1b41HLtS0CKlWrVE3G8=
 			</data>
 		</dict>
 		<key>Resources/Preview.jpeg</key>
@@ -101,6 +133,62 @@
 			<key>hash2</key>
 			<data>
 			DkTZQkGLND4utIepB6DZ71X6OnuwmrLFIFuY8TYf6OQ=
+			</data>
+		</dict>
+		<key>Resources/Step 1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2aVUnZj2QzOJ0PJamxtH1xWmdpqff3V54NWA2JBjVSM=
+			</data>
+		</dict>
+		<key>Resources/Step 2.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			v/5IkcgwS1BkLaR0UKDGwDxsGR7XXKyq4jWJqX73gUw=
+			</data>
+		</dict>
+		<key>Resources/Step 3.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			nefbQSGisjMdI59cQPidL9gE7xW/0xWTtRSteYUW/Po=
+			</data>
+		</dict>
+		<key>Resources/Step 4.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			zlu1OUd6euBUuJDcN69Quw9corkAg3YOj59e91jBmGs=
+			</data>
+		</dict>
+		<key>Resources/Step 5.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TswipMBZ55Ah6U8xUJ7Kkdf3+xezzj9hZqPz8V1SV30=
+			</data>
+		</dict>
+		<key>Resources/Step 6.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Q11G3JxikswqfaDB/DoVFfZB1ieqgA3nqi6Zgo7OBpQ=
+			</data>
+		</dict>
+		<key>Resources/Step 7.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gmPdaqT+bxAVqpa17OuDVhjHS5SIw5KcQ1NNUlNybJs=
+			</data>
+		</dict>
+		<key>Resources/bmc_qr.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DB3lHWI3tsCBhedp3HBeE23irnSApdHnQzUm+WTJg0g=
 			</data>
 		</dict>
 		<key>Resources/fail.mp3</key>
