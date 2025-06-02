@@ -23,6 +23,8 @@
 		5DCC51FD2D870A890042A408 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51FC2D870A890042A408 /* success.mp3 */; };
 		5DCC51FE2D870A890042A408 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC51FB2D870A890042A408 /* fail.mp3 */; };
 		5DCC52122D87129E0042A408 /* Preview.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC52112D87129E0042A408 /* Preview.jpeg */; };
+		5DEE1EC12DEDB769009F316E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE1EBF2DEDB769009F316E /* AppViewModel.swift */; };
+		5DEE1EC22DEDB769009F316E /* ProgressWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE1EC02DEDB769009F316E /* ProgressWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		5DCC51FB2D870A890042A408 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
 		5DCC51FC2D870A890042A408 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		5DCC52112D87129E0042A408 /* Preview.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Preview.jpeg; sourceTree = "<group>"; };
+		5DEE1EBF2DEDB769009F316E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		5DEE1EC02DEDB769009F316E /* ProgressWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 		5DCC51EF2D87079F0042A408 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5DEE1EBF2DEDB769009F316E /* AppViewModel.swift */,
+				5DEE1EC02DEDB769009F316E /* ProgressWindow.swift */,
 				5DCC51E42D8707960042A408 /* AppDelegate.swift */,
 			);
 			path = Base;
@@ -240,6 +246,8 @@
 			files = (
 				5DCC51EB2D8707960042A408 /* AppDelegate.swift in Sources */,
 				5DCC51F62D8707FD0042A408 /* AboutVC.swift in Sources */,
+				5DEE1EC12DEDB769009F316E /* AppViewModel.swift in Sources */,
+				5DEE1EC22DEDB769009F316E /* ProgressWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
