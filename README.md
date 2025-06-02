@@ -71,8 +71,9 @@ Follow the steps below to install and use the application.
 ## 💻 Usage
 Click on the **MacSpaceCleaner** menu bar icon and select the desired cleanup option:
 
-| Option                           | Shortcut     | Description                                                                    |
-|----------------------------------|--------------|--------------------------------------------------------------------------------|
+| Option                           | Shortcut    | Description                                                                    |
+|----------------------------------|-------------|--------------------------------------------------------------------------------|
+| **Available Storage**            | -           | Shows available disk space on your Mac, automatically updates every minute.    |
 | **Clean DerivedData**            | ⇧⌥C         | Deletes Xcode’s DerivedData folder to free up space and resolve build issues.  |
 | **Clear Xcode Caches**           | ⇧⌘X         | Removes cached data related to Xcode projects.                                 |
 | **Clear Archives**               | ⇧⌘A         | Deletes old archived builds from Xcode to save storage.                        |
