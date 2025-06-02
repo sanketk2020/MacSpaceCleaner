@@ -31,6 +31,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSWindowController(window: window)
     }()
     
+    var progressWindow          : NSWindow!
+    var progressBar             : NSProgressIndicator!
+    var storageInfoItem         : NSMenuItem!
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSApp.setActivationPolicy(.accessory)
         if #available(macOS 13.0, *) {
@@ -46,8 +50,75 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 print("Notification permission denied")
             }
         }
+
         self.setupCombine()
         self.setupMenu()
+
+        // Create a status bar item with variable length
+        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        
+        if let button = self.statusItem.button {
+            // Set an icon for the status item (using SF Symbols or a custom image)
+//            button.image = NSImage(systemSymbolName: "trash", accessibilityDescription: "Clean DerivedData")
+            button.image = NSImage(named: "menuIcon")
+        }
+        
+        // Create the menu for the status item
+        let menu = NSMenu()
+        
+        // Add storage info menu item at the top
+        self.storageInfoItem = NSMenuItem(title: "Calculating available storage...", action: nil, keyEquivalent: "")
+        self.storageInfoItem.isEnabled = false
+        menu.addItem(self.storageInfoItem)
+        menu.addItem(NSMenuItem.separator())
+        
+        menu.addItem(NSMenuItem(title: "Clean Derived Data", action: #selector(cleanDerivedData), keyEquivalent: "C"))
+        menu.addItem(NSMenuItem(title: "Clear Xcode Caches", action: #selector(clearXcodeCaches), keyEquivalent: "X"))
+        menu.addItem(NSMenuItem(title: "Clear Archives", action: #selector(clearArchives), keyEquivalent: "A"))
+        menu.addItem(NSMenuItem(title: "Clear iOS Device Support", action: #selector(clearIOSDeviceSupport), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: "Clear watchOS Device Support", action: #selector(clearWatchOSDeviceSupport), keyEquivalent: "W"))
+        menu.addItem(NSMenuItem(title: "Clear tvOS Device Support", action: #selector(clearTVOSDeviceSupport), keyEquivalent: "T"))
+        menu.addItem(NSMenuItem(title: "Remove Old Simulators", action: #selector(removeOldSimulators), keyEquivalent: "R"))
+        menu.addItem(NSMenuItem(title: "Clear Caches", action: #selector(clearCaches), keyEquivalent: "S"))
+        menu.addItem(NSMenuItem(title: "Clear Cocoa Pods Cache", action: #selector(clearCocoaPodsCache), keyEquivalent: "P"))
+        menu.addItem(NSMenuItem(title: "Empty Trash", action: #selector(emptyTrash), keyEquivalent: "D"))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Clear All", action: #selector(clearAll), keyEquivalent: "E"))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "About MSC", action: #selector(about), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "Q"))
+        
+        self.statusItem.menu = menu
+        
+        // Update storage info immediately and then periodically
+        self.updateStorageInfo()
+        Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateStorageInfo), userInfo: nil, repeats: true)
+    }
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    
+    func createProgressWindow() {
+        self.progressWindow = NSWindow(contentRect: NSMakeRect(0, 0, 300, 100),
+                                  styleMask: [.titled, .closable],
+                                  backing: .buffered, defer: false)
+        self.progressWindow.title = "Cleaning..."
+        self.progressWindow.center()
+        
+        self.progressBar = NSProgressIndicator(frame: NSMakeRect(20, 40, 260, 20))
+        self.progressBar.isIndeterminate = false
+        self.progressBar.minValue = 0
+        self.progressBar.maxValue = 100
+        self.progressWindow.contentView?.addSubview(self.progressBar)
+    }
+    
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    
+    func openAppOnStartUp(){
+        if #available(macOS 13.0, *) {
+            try? SMAppService.mainApp.register()
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -160,4 +231,74 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     @objc func quitApp() {
         NSApplication.shared.terminate(self)
     }
+    
+    func showNotification(title: String, message: String, success: Bool) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = UNNotificationSound.default
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error delivering notification: \(error.localizedDescription)")
+                self.playSound(success: success)
+            } else {
+                print("Notification delivered successfully: \(title)")
+                self.playSound(success: success)
+            }
+        }
+    }
+    
+    func playSound(success: Bool){
+        if success {
+            DispatchQueue.main.async {
+                NSSound(named: "success.mp3")?.play()
+            }
+        } else {
+            DispatchQueue.main.async {
+                NSSound(named: "fail.mp3")?.play()
+            }
+        }
+    }
+    
+    func applicationWillTerminate(_ aNotification: Notification) {
+        // Insert code here to tear down your application
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        return true
+    }
+
+    @objc func updateStorageInfo() {
+        DispatchQueue.global(qos: .background).async {
+            let fileURL = URL(fileURLWithPath: "/")
+            do {
+                let values = try fileURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+                if let capacity = values.volumeAvailableCapacityForImportantUsage {
+                    let formatter = ByteCountFormatter()
+                    formatter.allowedUnits = [.useGB]
+                    formatter.countStyle = .file
+                    let availableString = formatter.string(fromByteCount: Int64(capacity))
+                    
+                    DispatchQueue.main.async {
+                        self.storageInfoItem.title = "Available Storage: \(availableString)"
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.storageInfoItem.title = "Available Storage: Unknown"
+                }
+            }
+        }
+    }
+
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
+    }
+
 }
